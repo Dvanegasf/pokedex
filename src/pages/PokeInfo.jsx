@@ -6,37 +6,88 @@ import '../components/shared/pokedex/styles/pokeCard.css'
 import './styles/pokeInfo.css';
 import axios from 'axios';
 import PokeHeader from '../components/shared/PokeHeader';
+import PokeFooter from '../components/shared/PokeFooter';
 
 const PokeInfo = () => {
 
   const [pokemon, getPokemon] = useFetch();
   const [movesData, setMovesData] = useState([]);
   const { id } = useParams();
+  const [movesLoaded, setMovesLoaded] = useState(false);
+  const [loadingMoves, setLoadingMoves] = useState(false);
+
+  const loadMoves = async () => {
+
+    if (movesLoaded || !pokemon?.moves) return;
+    console.log("Se salió por el if");
+    
+    setLoadingMoves(true); // <-- falta esto
+
+    try {
+      const urls = pokemon.moves.map(move => move.move.url);
+
+      const responses = await Promise.all(
+        urls.map(url => axios.get(url))
+      );
+
+      const moves = responses.map(res => res.data);
+
+      setMovesData(moves);
+      setMovesLoaded(true);
+
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoadingMoves(false);
+    }
+  };
 
 
-  useEffect(() => {
-    if (pokemon?.moves) {
-      const urls = pokemon.moves.map(move => move.move.url); 
-      Promise.all(urls.map(url => axios.get(url)))
-        .then(responses => {
-          const moves = responses.map(res => res.data);
-          setMovesData(moves);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+  const groupedMoves = {};
+
+  movesData.forEach(move => {
+
+    const pokemonMove = pokemon?.moves.find(
+      m => m.move.name === move.name
+    );
+
+    pokemonMove?.version_group_details.forEach(detail => {
+
+      const method = detail.move_learn_method.name;
+
+      if (!groupedMoves[method]) {
+        groupedMoves[method] = {};
       }
-    }, [pokemon]);
-    
-    console.log(movesData[0]); 
-    
+
+      if (!groupedMoves[method][move.name]) {
+        groupedMoves[method][move.name] = {
+          move,
+          details: []
+        };
+      }
+
+      groupedMoves[method][move.name].details.push(detail);
+
+    });
+
+  });
+
 
   useEffect(() => {
-     const url =`https://pokeapi.co/api/v2/pokemon/${id}`;
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     getPokemon(url);
-  }, []);
 
+    setMovesData([]);
+    setMovesLoaded(false);
+    setLoadingMoves(false);
 
+  }, [id]);
+
+  const formatName = (str) => {
+    return str
+      .replaceAll('-', ' ')
+      .replace(/\b\w/g, l => l.toUpperCase());
+  };
 
   return (
     <section className='pokeinfo'>
@@ -117,21 +168,123 @@ const PokeInfo = () => {
       </div>
       <div className='pokeinfo__cont datos1'>
         <div className='pokeinfo__title'>
-          <span>movements</span>
-          <hr className='pokeinfo__hr hr2'/>
-          <figure>
-            <img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" />
-          </figure>
+            <span>Evolutions chain</span>
+            <hr className='pokeinfo__hr hr2'/>
+            <figure>
+              <img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" />
+            </figure>
         </div>
-          {
-            pokemon?.moves.map(( move, index )=> (
-            <li className={`pokeinfo__moves ${movesData[index]?.type.name}`} key={move.move.url}>
-              {move.move.name} 
-            </li>
-            ))
-          }
+        <div className='pokeinfo__evos'> 
+            <Evolves/>
+        </div>
       </div>
-      <div className='pokeinfo__cont datos1 '>
+      
+      <details
+        className='pokeinfo__cont datos1'>
+        <summary className='pokeinfo__title'>
+          <span>movements</span>
+            <hr className='pokeinfo__hr hr2'/>
+            <figure>
+              <img className='pokeinfo__img2' src="../../../assets/pokebolaME.png" alt="pokebola image" />
+            </figure>
+        </summary>
+
+        {
+          !movesLoaded && !loadingMoves && (
+            <button onClick={loadMoves}>
+              Load Moves
+            </button>
+          )
+        }
+        {
+          loadingMoves ? (
+            <p>Loading moves...</p>
+          ) : movesLoaded ? (
+            <div className='moves-container'>
+            {
+              Object.entries(groupedMoves).map(
+                ([method, moves]) => (
+
+                  <details key={method}>
+
+                    <summary>
+                      {formatName(method)}
+                    </summary>
+
+                    {
+                      Object.values(moves).map(
+                        ({ move, details }) => (
+
+                          <details
+                            key={move.id}
+                            className='move-card'
+                          >
+                            <p>
+                              Category: {move.damage_class.name}
+                            </p>
+
+                            <summary>
+                              {move.name}
+                            </summary>
+
+                            <div>
+
+                              <p>
+                                Type: {move.type.name}
+                              </p>
+
+                              <p>
+                                Power: {move.power ?? '--'}
+                              </p>
+
+                              <p>
+                                Accuracy: {move.accuracy ?? '--'}
+                              </p>
+
+                              <ul>
+
+                                {
+                                  details.map((detail, index) => (
+
+                                    <li key={index}>
+
+                                      {detail.version_group.name}
+
+                                      {
+                                        method === 'level-up'
+                                          ? ` (Lv. ${detail.level_learned_at})`
+                                          : ''
+                                      }
+
+                                    </li>
+
+                                  ))
+                                }
+
+                              </ul>
+
+                            </div>
+
+                          </details>
+
+                        )
+                      )
+                    }
+
+                  </details>
+
+                )
+              )
+            }
+
+          </div>
+          ) : (
+            <p>No moves loaded.</p>
+          )
+        }
+
+      </details>
+      <div className='pokeinfo__cont datos1 last'>
         <div className='pokeinfo__title'>
             <span>appears games</span>
             <hr className='pokeinfo__hr hr2'/>
@@ -149,19 +302,9 @@ const PokeInfo = () => {
             }
         </div>
       </div>
-      <div className='pokeinfo__cont datos1 last'>
-        <div className='pokeinfo__title'>
-            <span>Evolutions chain</span>
-            <hr className='pokeinfo__hr hr2'/>
-            <figure>
-              <img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" />
-            </figure>
-        </div>
-        <div className='pokeinfo__evos'> 
-            <Evolves/>
-        </div>
-      </div>
+      <PokeFooter/>
     </section>
+    
   )
 }
 

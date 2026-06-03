@@ -141,9 +141,6 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.pokeinfo__stats-item span:nth-child(2) {
-    justify-self: end;
-}
 
 .outbar {
     overflow: hidden;
@@ -162,7 +159,7 @@
 }
 .datos1{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     list-style: none;
     gap: 3px;
 }
@@ -192,7 +189,7 @@
 
 .pokeinfo__games1{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 3px;
 }
 .pokeinfo__games{

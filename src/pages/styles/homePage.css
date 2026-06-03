@@ -1,10 +1,9 @@
 .pokehome{
     position: relative;
-    height: 87.6vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 .pokehome__img{

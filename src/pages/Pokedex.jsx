@@ -6,6 +6,7 @@ import PokeSelect from '../components/shared/pokedex/PokeSelect';
 import './styles/pokedex.css';
 import Pagin from '../components/shared/pokedex/Pagin'
 import PokeHeader from '../components/shared/PokeHeader';
+import PokeFooter from '../components/shared/PokeFooter';
 
 const Pokedex = () => {
 
@@ -74,6 +75,7 @@ const Pokedex = () => {
       total={total}
       />
       </div>
+      <PokeFooter/>
     </div>
   )
 }
