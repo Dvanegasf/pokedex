@@ -3,14 +3,13 @@
     position: absolute;
     width: 100%;
     height: 40%;
-    border: 0 !important;
+    border: 0;
     
 }
 .pokeinfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     position: relative;
     color: black;
 }
@@ -62,8 +61,8 @@
     margin-top: 10px;  
     width: fit-content; 
     padding: 4px;   
-    background: none !important;
-    border: 1px solid #b9b9b9 !important;
+    background: none ;
+    border: 1px solid #b9b9b9 ;
 }
 .pokeinfo__info1 {
     display: flex;
@@ -72,8 +71,8 @@
 } 
 .pokeinfo__name {
     text-transform: uppercase;
-    background: none !important;
-    border: none !important;
+    background: none ;
+    border: none ;
 }
 .pokeinfo__hr{
     flex-grow: 1;
@@ -123,6 +122,12 @@
     margin: 5px;
     padding: 10px 0;
     gap: 5px;
+}
+.pokeinfo__types li{
+    border: none;
+    padding: 3px 5px;
+    font-weight: 900;  
+    border-radius: 30px;
 }
 .pokeinfo__img2{
     height: fit-content;
@@ -179,12 +184,113 @@
     border-top: 1px solid #E6E6E6;
 
 }
-.pokeinfo__moves{
+/* CONTENEDOR GENERAL */
+.moves-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+
+/* METODOS */
+.moves-method{
+    border: 1px solid #dcdcdc;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #f8f8f8;
+    padding: 5px
+}
+.moves-method:hover{
+    background: #d8d8d8;
+    cursor: pointer;
+}
+
+
+/* CARTA DE MOVIMIENTO */
+.move-card{
+    margin: 10px;
+    border: 1px solid #aba8a8;
+    border-radius: 12px;
+    background: white;
+    flex-direction: row;
+    
+}
+
+.move-card summary{
+    cursor: pointer;
+    border-radius: 12px 12px 0 0;
+    padding: 12px 15px;
+    font-weight: 600;
     text-transform: capitalize;
-    background-color: #E5E5E5;
+    
+}
+
+.move-card summary:hover{
+    background: #d8d8d8;
+}
+
+/* INFO INTERNA */
+.move-info{
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.move-info p{
+    margin: 5px 0;
+}
+.move-info-data{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.move-flavor{
+    width: max-content;
+    height: max-content;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    
+}
+/* VERSIONES */
+.move-info ul{
+    margin-top: 10px;
+    padding-left: 20px;
+    flex-direction: row;
+}
+
+.move-info li{
+    text-transform: capitalize;
+    margin: 3px 0;
+    flex-direction: row;
+}
+
+/* BADGES */
+.move-badges{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.badge{
+    padding: 4px 10px;
     border-radius: 20px;
-    padding: 5px 6px;
-    color: #454444;
+    color: white;
+    border: none;
+}
+
+.badge-category{
+    background: #666;
+    text-transform: capitalize;
 }
 
 .pokeinfo__games1{

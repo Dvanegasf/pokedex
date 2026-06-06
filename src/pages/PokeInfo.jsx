@@ -88,7 +88,7 @@ const PokeInfo = () => {
       .replaceAll('-', ' ')
       .replace(/\b\w/g, l => l.toUpperCase());
   };
-
+//console.log(movesData);
   return (
     <section className='pokeinfo'>
       <PokeHeader/>
@@ -101,11 +101,11 @@ const PokeInfo = () => {
             <img loading="lazy" className='pokeinfo__shiny' src={pokemon?.sprites.other['official-artwork'].front_shiny} alt="pokemon shiny image" /> <p>✨</p>
           </figure>
         <div className='pokeinfo__info'>
-            <h3 className={`pokeinfo__num ${pokemon?.types[0].type.name}`}>
+            <h3 className={`pokeinfo__num `}>
               #{pokemon?.id}</h3>
           <div className='pokeinfo__info1'>
             <hr className='pokeinfo__hr'/>
-            <h3 className={`pokeinfo__name ${pokemon?.types[0].type.name}`}> {pokemon?.name}  </h3>
+            <h3 className={`pokeinfo__name `}> {pokemon?.name}  </h3>
             <hr className='pokeinfo__hr' />
           </div>
           <div className='pokeinfo__fisic'>
@@ -124,7 +124,7 @@ const PokeInfo = () => {
               <ul className='pokeinfo__types'>
                   {
                     pokemon?.types.map((type, index) => (
-                    <li className={`slot__${type.slot} ${pokemon?.types[index]?.type.name}`} key={type.type.url}>
+                    <li className={` ${pokemon?.types[index]?.type.name}`} key={type.type.url}>
                       {type.type.name} 
                     </li>
                       ))
@@ -183,16 +183,16 @@ const PokeInfo = () => {
         className='pokeinfo__cont datos1'>
         <summary className='pokeinfo__title'>
           <span>movements</span>
-            <hr className='pokeinfo__hr hr2'/>
+            <hr className='pokeinfo__hr hr2'/>CLIK ME<hr className='pokeinfo__hr hr2'/>
             <figure>
-              <img className='pokeinfo__img2' src="../../../assets/pokebolaME.png" alt="pokebola image" />
+              <img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" />
             </figure>
         </summary>
 
         {
           !movesLoaded && !loadingMoves && (
             <button onClick={loadMoves}>
-              Load Moves
+              Click to Load Moves
             </button>
           )
         }
@@ -200,14 +200,14 @@ const PokeInfo = () => {
           loadingMoves ? (
             <p>Loading moves...</p>
           ) : movesLoaded ? (
-            <div className='moves-container'>
+            <div className='moves-container '>
             {
               Object.entries(groupedMoves).map(
                 ([method, moves]) => (
 
                   <details key={method}>
 
-                    <summary>
+                    <summary className='moves-method'>
                       {formatName(method)}
                     </summary>
 
@@ -219,52 +219,44 @@ const PokeInfo = () => {
                             key={move.id}
                             className='move-card'
                           >
-                            <p>
-                              Category: {move.damage_class.name}
-                            </p>
-
                             <summary>
-                              {move.name}
+                              {formatName(move.name)}
                             </summary>
 
-                            <div>
+                            <div className='move-info'>
+                              <div className='move-info-data'>
+                                <div className='move-badges'>
+                                  <p><strong>Category:</strong></p>
+                                  <span className='badge badge-category'>
+                                    {move.damage_class.name}
+                                  </span>
+                                </div>
 
-                              <p>
-                                Type: {move.type.name}
-                              </p>
+                                <p><strong>Type:</strong> <span className={`badge ${move.type.name}`}>{move.type.name}</span></p>
+                                <p><strong>Power:</strong> {move.power ?? '--'}</p>
+                                <p><strong>Accuracy:</strong> {move.accuracy ?? '--'}</p>
+                                <p><strong>PP:</strong> {move.pp ?? '--'}</p>
+                                <p><strong>Contest:</strong> <span className={`badge ${move.contest_type?.name}`}>{move.contest_type?.name ?? '--'}</span></p>
 
-                              <p>
-                                Power: {move.power ?? '--'}
-                              </p>
-
-                              <p>
-                                Accuracy: {move.accuracy ?? '--'}
-                              </p>
-
-                              <ul>
-
-                                {
-                                  details.map((detail, index) => (
-
+                                <ul>
+                                  <p><strong>Version Availability</strong></p>
+                                  {details.map((detail,index) => (
                                     <li key={index}>
-
                                       {detail.version_group.name}
-
                                       {
                                         method === 'level-up'
                                           ? ` (Lv. ${detail.level_learned_at})`
                                           : ''
                                       }
-
                                     </li>
-
-                                  ))
-                                }
-
-                              </ul>
-
+                                  ))}
+                                </ul>
+                              </div>
+                              <div className='move-flavor'>
+                                <p>Description</p>
+                                <p>{move?.flavor_text_entries?.[0]?.flavor_text}</p>
+                              </div>
                             </div>
-
                           </details>
 
                         )
@@ -279,7 +271,7 @@ const PokeInfo = () => {
 
           </div>
           ) : (
-            <p>No moves loaded.</p>
+            <p>No moves loaded yet.</p>
           )
         }
 

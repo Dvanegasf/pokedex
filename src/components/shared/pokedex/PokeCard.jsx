@@ -43,7 +43,7 @@ const PokeCard = ({url}) => {
                 !stat.stat.name.includes('special') && 
                 <li key={stat.stat.url}>
                   <span className='pokecard__stats1'>{stat.stat.name}</span>
-                  <span className={`pokecard__stats2 ${pokemon?.types[0].type.name}`}>{stat.base_stat}</span>
+                  <span className={`pokecard__stats2 ${pokemon?.types[0].type.name}2`}>{stat.base_stat}</span>
                 </li>
               ))
             }

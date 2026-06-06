@@ -2,110 +2,252 @@
 .normal {
     background: linear-gradient(to bottom, gray, lightgray);
     border: 5px solid gray;
-    color: gray; 
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
+.normal2{
+    color: gray;
+}
+
 .fire {
     background: linear-gradient(to bottom, red, orange);
     border: 5px solid red;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.fire2{
     color: red;
 }
-
 .water {
     background: linear-gradient(to bottom, blue, lightblue);
     border: 5px solid blue;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.water2{
     color: blue;
 }
-
 .grass {
     background: linear-gradient(to bottom, green, lightgreen);
     border: 5px solid green;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.grass2{
     color: green;
 }
 .electric {
     background: linear-gradient(to bottom, yellow, lightyellow);
     border: 5px solid yellow;
-    color: rgb(208, 208, 1);
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-
+.electric2{
+    color: rgb(208, 208, 1)
+}
 .ice {
     background: linear-gradient(to bottom, lightblue, white);
     border: 5px solid rgb(167, 208, 221);
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.ice2{
     color: rgb(167, 208, 221);
 }
-
 .fighting {
     background: linear-gradient(to bottom, darkred, brown);
     border: 5px solid darkred;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.fighting2{
     color: darkred;
 }
-
 .poison {
     background: linear-gradient(to bottom, purple, rgb(219, 122, 219));
     border: 5px solid purple;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.poison2{
     color: purple;
 }
-
 .ground {
     background: linear-gradient(to bottom, brown, tan);
     border: 5px solid brown;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.ground2{
     color: brown;
 }
-
 .flying {
     background: linear-gradient(to bottom, skyblue, white);
     border: 5px solid skyblue;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.flying2{
     color: skyblue;
 }
-
 .psychic {
     background: linear-gradient(to bottom, pink, purple);
     border: 5px solid pink;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.psychic2{
     color: pink;
 }
-
 .bug {
     background: linear-gradient(to bottom, rgb(1, 53, 1), rgb(0, 255, 0));
     border: 5px solid darkgreen;
+    
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.bug2{
     color: darkgreen;
 }
-
 .rock {
     background: linear-gradient(to bottom, rgb(65, 65, 65), #5555);
     border: 5px solid rgb(85, 85, 85);
     color: rgb(85, 85, 85);
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-
+.rock2{
+    color: rgb(85, 85, 85);
+}
 .ghost {
     background: linear-gradient(to bottom, rgb(54, 54, 54), rgb(133, 29, 173));
     border: 5px solid purple;
     color: purple;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-
+.ghost2{
+    color: purple;
+}
 .dragon {
     background: linear-gradient(to bottom, darkblue, purple);
     border: 5px solid darkblue;
     color: darkblue;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-
+.dragon2{
+    color: darkblue;
+}
 .dark {
     background: linear-gradient(to bottom, black, darkgray);
     border: 5px solid black;
     color: black;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-
+.dark2{
+    color: black;
+}
 .steel {
     background: linear-gradient(to bottom, gray, silver);
     border: 5px solid gray;
     color: gray;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-
+.steel2{
+    color: gray;
+}
 .fairy {
     background: linear-gradient(to bottom, rgb(255, 136, 154), pink);
     border: 5px solid pink;
     color: pink;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.fairy2{
+    color: pink;
 }
 
-
+.cool{
+    background: linear-gradient(to bottom, hsl(12, 68%, 62%), rgb(176, 97, 97));
+    border: 5px solid pink;
+    color: pink;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.tough{
+    background: linear-gradient(to bottom, hsl(49, 46%, 55%), rgb(220, 220, 8));
+    border: 5px solid rgb(197, 197, 54);
+    color: yellow;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.smart{
+    background: linear-gradient(to bottom, hsl(138, 43%, 58%), rgb(0, 174, 32));
+    border: 5px solid hsl(138, 43%, 58%);
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.cute{
+    background: linear-gradient(to bottom, hsl(322, 90%, 54%), hsl(329, 55%, 69%));
+    border: 5px solid hsl(329, 55%, 69%);
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.beauty{
+    background: linear-gradient(to bottom, lightblue, hsl(220, 94%, 67%));
+    border: 5px solid lightblue;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
 /* ---- pokecard ---- */
 
 .pokecard {
@@ -159,10 +301,8 @@
 .slot__1, .slot__2{
     border: none;
     border-radius: 30px;
-    padding: 3px;
+    padding: 3px 5px;
     font-weight: 900;
-    color: black;
-    margin: 0;
 }
 .pokecard__hr {
     width: 90%;
@@ -179,6 +319,7 @@
     gap: 10px 40px;
     text-transform: uppercase;
     font-size: 20px;
+    color: black ;
 }
 .pokecard__stats1{
     font-size: 15px;
