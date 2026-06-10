@@ -1,0 +1,122 @@
+.pokeloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6FADFA;
+  transition: opacity 0.5s ease;
+}
+
+.pokeloader--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pokeloader__ball {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  z-index: 10000;
+}
+
+.pokeloader__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 80px;
+  border-radius: 80px 80px 0 0;
+  border: 6px solid #1a1a1a;
+  border-bottom: none;
+  background: #D93F3F;
+  transform-origin: center bottom;
+  transition: transform 0.5s ease-in-out;
+}
+
+.pokeloader__bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 160px;
+  height: 80px;
+  border-radius: 0 0 80px 80px;
+  border: 6px solid #1a1a1a;
+  border-top: none;
+  background: white;
+  transform-origin: center top;
+  transition: transform 0.5s ease-in-out;
+}
+
+.pokeloader__belt {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: #1a1a1a;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.pokeloader__button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  border: 6px solid #1a1a1a;
+  z-index: 3;
+}
+
+.pokeloader__button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e0e0e0;
+}
+
+.pokeloader__flash {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.pokeloader__ball--spin {
+  animation: pokespin .5s ease-in-out;
+}
+
+@keyframes pokespin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pokeloader__ball--open .pokeloader__top {
+  transform: translateY(-30px) rotate(-30deg);
+}
+
+.pokeloader__ball--open .pokeloader__bottom {
+  transform: translateY(30px) rotate(30deg);
+}
+
+.pokeloader__ball--open .pokeloader__flash {
+  animation: flashout 0.5s ease forwards;
+}
+
+@keyframes flashout {
+  0%   { opacity: 0.9; }
+  100% { opacity: 0; }
+}

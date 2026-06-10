@@ -5,16 +5,14 @@
     right: 0;
   }
   
-  .pokefooter__red {
-    background: linear-gradient(to bottom, rgb(255, 138, 138), rgb(255, 0, 0));
+  .pokefooter__white {
+    background: white;
     height: 50px;
-    box-shadow: 0 0 20px white;
-
   }
   
   .pokefooter__black {
     background: linear-gradient(to bottom, rgb(2, 0, 0), rgb(71, 71, 71));
-    height: 30px;
+    height: 25px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -22,15 +20,18 @@
   
   .pokefooter__outcircle {
     position: absolute;
-    bottom: 0; 
-    background: linear-gradient(to bottom, rgb(2, 0, 0), rgb(71, 71, 71));
-    border: 2px solid rgb(2, 0, 0);
+    bottom: 60%; 
+    right: 50%;
+    transform: translateX(50%);
+    background: transparent;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    border-bottom: 30px solid hsl(213, 93%, 71%);
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
   }
   
   .pokefooter__incircle {

@@ -5,7 +5,7 @@
 .pokeheader__red {
     position: relative;
     background: linear-gradient(to bottom, rgb(255, 138, 138), rgb(255, 0, 0));    
-    height: 50px;
+    height: 70px;
     z-index: 1;
 }
 
@@ -13,7 +13,6 @@
     width: 220px;
     position: absolute;
     left: 10px;
-    bottom: 0px;
 }
 .pokeheader__img:hover{
     cursor: pointer;
@@ -22,20 +21,19 @@
 .pokeheader__black {
     position: relative;
     background: linear-gradient(to bottom, rgb(2, 0, 0), rgb(71, 71, 71));
-    height: 30px;
-    box-shadow: 0 0 20px white;
+    height: 5px;
+    box-shadow: 0 0 50px white;
 
 }
 
 .pokeheader__outcircle {
     position: absolute;
     top: 50%;
-    right: 10%;
-    transform: translateY(-50%);
+    right: 50%;
+    transform: translate(50%, -50%);
     background: linear-gradient(to bottom, rgb(2, 0, 0), rgb(71, 71, 71));
-    border: 7px solid linear-gradient(to bottom, rgb(2, 0, 0), rgb(71, 71, 71));;
     border-radius: 50%;
-    width: 80px;
+    width: 40px;
     aspect-ratio: 1;
     z-index: 1000;
 }

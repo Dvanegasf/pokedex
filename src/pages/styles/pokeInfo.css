@@ -103,9 +103,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.pokeinfo__span{
-    text-transform: capitalize;
-}
+
 .pokeinfo__abilities{
     display: flex;
     background: #6FADFA;
@@ -113,8 +111,7 @@
     border-radius: 20px;
     padding: 0 3px;
 }
-.pokeinfo__types, .pokeinfo__abilities1{
-    text-transform: capitalize;    
+.pokeinfo__types, .pokeinfo__abilities1{    
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -122,6 +119,11 @@
     margin: 5px;
     padding: 10px 0;
     gap: 5px;
+}
+.pokeinfo__ability1, .pokeinfo__type1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .pokeinfo__types li{
     border: none;
@@ -137,7 +139,6 @@
 .pokeinfo__stats{
     padding-bottom: 20px;
     text-align: left;
-    text-transform: capitalize;
 }
 
 .pokeinfo__stats-item {
@@ -173,7 +174,6 @@
     text-align: left;
     align-items: center;
     width: 100%;
-    text-transform: capitalize;
     color: #E6E6E6;
     font-weight: 900;
     font-size: 30px;
@@ -191,8 +191,22 @@
     gap: 15px;
     margin-top: 15px;
 }
-
-
+.moves_cargados{
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-top: 10px;
+}
+.moves-button{
+    background: #6FADFA;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    align-self: center;
+}
 /* METODOS */
 .moves-method{
     border: 1px solid #dcdcdc;
@@ -204,6 +218,7 @@
 .moves-method:hover{
     background: #d8d8d8;
     cursor: pointer;
+    
 }
 
 
@@ -222,12 +237,12 @@
     border-radius: 12px 12px 0 0;
     padding: 12px 15px;
     font-weight: 600;
-    text-transform: capitalize;
     
 }
 
 .move-card summary:hover{
     background: #d8d8d8;
+    border-radius: 12px ;
 }
 
 /* INFO INTERNA */
@@ -268,7 +283,6 @@
 }
 
 .move-info li{
-    text-transform: capitalize;
     margin: 3px 0;
     flex-direction: row;
 }
@@ -290,7 +304,6 @@
 
 .badge-category{
     background: #666;
-    text-transform: capitalize;
 }
 
 .pokeinfo__games1{
@@ -299,7 +312,6 @@
     gap: 3px;
 }
 .pokeinfo__games{
-    text-transform: capitalize;
     background-color: #E5E5E5;
     border-radius: 20px;
     padding: 6px 10px;

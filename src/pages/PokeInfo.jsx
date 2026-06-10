@@ -88,7 +88,8 @@ const PokeInfo = () => {
       .replaceAll('-', ' ')
       .replace(/\b\w/g, l => l.toUpperCase());
   };
-//console.log(movesData);
+
+
   return (
     <section className='pokeinfo'>
       <PokeHeader/>
@@ -179,27 +180,31 @@ const PokeInfo = () => {
         </div>
       </div>
       
-      <details
-        className='pokeinfo__cont datos1'>
-        <summary className='pokeinfo__title'>
+      <div className='pokeinfo__cont datos1'>
+        <div className='pokeinfo__title'>
           <span>movements</span>
-            <hr className='pokeinfo__hr hr2'/>CLIK ME<hr className='pokeinfo__hr hr2'/>
+            <hr className='pokeinfo__hr hr2'/>
             <figure>
-              <img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" />
+              <img className='pokeinfo__img2' 
+                src="../../../assets/pokebola.png" 
+                alt="pokebola image" />
             </figure>
-        </summary>
+        </div>
 
         {
           !movesLoaded && !loadingMoves && (
-            <button onClick={loadMoves}>
+            <button className='moves-button' onClick={loadMoves}>
               Click to Load Moves
             </button>
           )
         }
         {
-          loadingMoves ? (
+          loadingMoves && (
             <p>Loading moves...</p>
-          ) : movesLoaded ? (
+          ) 
+        }
+        {
+           movesLoaded ? (
             <div className='moves-container '>
             {
               Object.entries(groupedMoves).map(
@@ -271,11 +276,11 @@ const PokeInfo = () => {
 
           </div>
           ) : (
-            <p>No moves loaded yet.</p>
+            <p className='moves_cargados'>No moves loaded yet.</p>
           )
         }
 
-      </details>
+      </div>
       <div className='pokeinfo__cont datos1 last'>
         <div className='pokeinfo__title'>
             <span>appears games</span>
