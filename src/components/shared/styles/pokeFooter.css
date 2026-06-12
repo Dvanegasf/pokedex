@@ -12,7 +12,7 @@
   
   .pokefooter__black {
     background: linear-gradient(to bottom, rgb(2, 0, 0), rgb(71, 71, 71));
-    height: 25px;
+    height: 20px;
     position: relative;
     display: flex;
     justify-content: center;

@@ -7,17 +7,13 @@ import Pokedex from './pages/Pokedex'
 import PokeLoader from './components/shared/PokeLoader'
 
 function App() {
-  const [loading, setLoading] = useState(true)
   const [visible, setVisible] = useState(false)
 
   return (
     <div>
-      {loading && (
-        <PokeLoader
-          onOpen={() => requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)))}
-          onDone={() => setLoading(true)}
-        />
-      )}
+      <PokeLoader
+        onOpen={() => requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)))}
+      />
       <div className={`app-content ${visible ? 'app-content--visible' : ''}`}>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
