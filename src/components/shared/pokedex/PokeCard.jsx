@@ -17,16 +17,16 @@ const PokeCard = ({url}) => {
       navigate(`/pokedex/${pokemon.name}`);
     }
 
-
+console.log(pokemon)
   return (
-    <article className={`pokecard ${pokemon?.types[0].type.name}`} onClick={handleClick}>
+    <article className={`pokecard  ${pokemon?.types[0].type.name}`} onClick={handleClick}>
       <div className={`pokecard__back ${pokemon?.types[0].type.name}`}></div>
-      <span className='pokecard__id'>#{pokemon?.id}</span>
+      <span className='pokecard__id noshadow'>#{pokemon?.id}</span>
         <figure className='pokecard__img'>
             <img loading='lazy' src={pokemon?.sprites.other['official-artwork'].front_default} alt="pokemon image" />
         </figure>
-        <h3 className='pokecard__name'>{pokemon?.name}</h3>
-        <span className='pokecard__span'>Type :</span>
+        <h3 className='pokecard__name noshadow'>{pokemon?.name}</h3>
+        <span className='pokecard__span noshadow'>Type :</span>
         <ul className='pokecard__types'>
             {
                 pokemon?.types.map((type, index) => (
@@ -38,13 +38,13 @@ const PokeCard = ({url}) => {
         </ul>
         <hr className='pokecard__hr' />
         <div>
-          <ul className='pokecard__stats'>
+          <ul className='pokecard__stats '>
             {
               pokemon?.stats.map(stat => (
                 !stat.stat.name.includes('special') && 
                 <li key={stat.stat.url}>
-                  <span className='pokecard__stats1'>{stat.stat.name}</span>
-                  <span className={`pokecard__stats2 ${pokemon?.types[0].type.name}2`}>{stat.base_stat}</span>
+                  <span className='pokecard__stats1 '>{stat.stat.name}</span>
+                  <span className={`pokecard__stats2 noshadow ${pokemon?.types[0].type.name}2`}>{stat.base_stat}</span>
                 </li>
               ))
             }

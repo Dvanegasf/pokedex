@@ -1,115 +1,228 @@
 .evo__cont {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;       
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 16px;
+  gap: 4px;
+}
+.evo__loading {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
 }
 
-.evo__img {
-    max-width: 100px;
-    width: auto;
-    height: auto;
-    margin: 0 auto;
-    transition: transform 0.3s;
+.evo__stage {
+  display: flex;
+  flex-direction: row;     
+  align-items: center;
+  gap: 4px;
+}
+.evo__stage2 {
+  display: flex;
+  flex-direction: column;       
+  align-items: center;
+  gap: 4px;
+}
+.evo__arrow {
+  font-size: 24px;
+  font-weight: 700;
+  color: #aaa;
+  padding: 0 4px;
+  text-align: center;
+  transform: rotate(-90deg);  
 }
 
-.evo__cont2, .evo__cont3, .evo__cont4, .details__cont,.evo__name1 {
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    padding: 10px;
-    transition: transform 0.5s, background-color 0.3s;
+.evo__row {
+  display: flex;
+  flex-direction: row;  
+  align-items: center;
+  gap: 12px;
 }
 
+
+/* ── Card ── */
 .evo__card {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 10px 10px;
+  border-radius: 14px;
+  cursor: pointer;
+  width: 180px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.evo__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18);
+  border-radius: 14px;
+  pointer-events: none;
 }
 
 .evo__card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-.arrow1, .arrow2, .divider {
-    padding: 5px 0;
-    font-weight: 700;
-    margin: 10px;
-    color: #333;
-    pointer-events: none; /* Evita que se vean afectados por el hover */
-}
-.arrow1{
-    transform: rotate(45grad);
-}
-.arrow2{
-    transform: rotate(-45grad);
+/* ── Imagen ── */
+.evo__img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-.evo__name,.evo__name1, .detail__item {
-    text-transform: capitalize;
-    font-size: 1rem;
-    font-weight: 800;
-    color: #222;
-    margin: 5px 0;
+/* ── Nombre ── */
+.evo__name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  margin-top: 6px;
+  text-align: center;
+  word-break: break-word;
 }
-.evo__name1{
-    display: flex;
+.evo__name span{
+  padding: 20px;
+}
+.Types__li{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+}
+
+.evo__num {
+  font-size: 0.7rem;
+  opacity: 0.75;
+  font-weight: 600;
+}
+
+/* ── Detalles de evolución ── */
+.evo__details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 8px;
+  gap: 3px;
+  width: 100%;
+  background: rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.evo__detail {
+  font-size: 0.65rem;
+  color: white;
+  text-transform: capitalize;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.evo__detail strong {
+  opacity: 0.8;
+}
+
+/* ── Forms section ── */
+.evo__varieties-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+  color: black;
+  margin-bottom: 4px;
+}
+
+.evo__card--default {
+  border: 2px solid rgba(255,255,255,0.5);
+}
+
+.evo__badge {
+  margin-top: 4px;
+  font-size: 0.6rem;
+  background: rgba(255,255,255,0.25);
+  border-radius: 6px;
+  padding: 2px 8px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.evo__card--form {
+  width: 110px;
+  border: 2px dashed rgba(255,255,255,0.4);
+}
+
+.evo__card--form:hover {
+  opacity: 1;
+}
+
+/* ── Forms section ── */
+.evo__varieties-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+  color: black;
+  margin-bottom: 4px;
+}
+
+.evo__card--default {
+  border: 2px solid rgba(255,255,255,0.5);
+}
+
+.evo__badge {
+  margin-top: 4px;
+  font-size: 0.6rem;
+  background: rgba(255,255,255,0.25);
+  border-radius: 6px;
+  padding: 2px 8px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.evo__card--form {
+  width: 110px;
+  border: 2px dashed rgba(255,255,255,0.4);
+}
+
+.evo__card--form:hover {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+   .evo__cont {
     flex-direction: column;
-}
+  }
 
-.evo__1, .evo__2, .evo__3 {
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    margin: 10px 0;
-}
+  .evo__stage {
+    flex-direction: column;
+  }
 
-.evo__1, .evo__3 {
-    justify-content: flex-end;
-}
-
-.evo__2 {
-    justify-content: flex-start;
-}
-
-@media (max-width: 768px) {
-    .evo__cont, .evo__card, .evo__cont2, .evo__cont3, .evo__cont4, .details__cont {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .evo__img {
-        max-width: 80px; /* Imagen más pequeña en pantallas pequeñas */
-    }
-
-    .evo__name, .detail__item {
-        font-size: 0.9rem; /* Texto ligeramente más pequeño en móviles */
-    }
-
-    .evo__card {
-        margin: 20px 0;
-    }
-    .arrow1{
-        transform: rotate(0);
-    }
-    .arrow2{
-        transform: rotate(0);
-    }
+  .evo__arrow {
+    transform: rotate(0deg);
+  }
+  .evo__card {
+    width: 180px;
+  }
+  .evo__row{
+    flex-direction: column;
+  }
+  .evo__img {
+    width: 70px;
+    height: 70px;
+  }
 }

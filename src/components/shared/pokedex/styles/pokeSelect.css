@@ -5,6 +5,7 @@
     border: none;
     box-shadow: 0 0 10px white;
     color: rgb(137, 137, 137);
+    text-shadow: none;
 }
 option {
     font-size: 14px;

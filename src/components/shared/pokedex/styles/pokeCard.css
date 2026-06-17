@@ -6,6 +6,7 @@
     color: white;
     font-weight: bold;
     text-transform: capitalize;
+    
 }
 .normal2{
     color: gray;
@@ -48,9 +49,10 @@
     background: linear-gradient(to bottom, yellow, lightyellow);
     border: 5px solid yellow;
     font-size: .85rem;
-    color: white;
+    color: white; 
     font-weight: bold;
     text-transform: capitalize;
+    text-shadow: 4px 1px 5px  black;
 }
 .electric2{
     color: rgb(208, 208, 1)
@@ -343,4 +345,6 @@
     flex-direction: column;
     align-items: center;
 }
-
+.noshadow{
+    text-shadow: none;
+}

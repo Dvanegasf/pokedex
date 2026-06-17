@@ -1,6 +1,6 @@
 .pokehome{
     position: relative;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -39,6 +39,7 @@
     color: rgb(137, 137, 137);
     font-size: larger;
     box-shadow: 0 0 10px white;
+    text-shadow: none;
 }
 .pokehome__btn{
     padding: 10px 20px;
