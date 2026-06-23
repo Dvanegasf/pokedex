@@ -38,7 +38,6 @@ const Pokedex = () => {
     setInputValue(textInput.current.value.trim().toLowerCase());
     textInput.current.value = '';
   }
-  //console.log(pokemons?.results)
 
   const handleChangeName = () => {
     dispatch(clearTrainer())

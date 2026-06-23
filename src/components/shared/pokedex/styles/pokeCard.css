@@ -1,6 +1,6 @@
 /* ---- Colors ---- */
 .normal {
-    background: linear-gradient(to bottom, gray, lightgray);
+    background: linear-gradient(to bottom, rgb(160, 158, 158), lightgray);
     border: 5px solid gray;
     font-size: .85rem;
     color: white;
@@ -58,7 +58,7 @@
     color: rgb(208, 208, 1)
 }
 .ice {
-    background: linear-gradient(to bottom, lightblue, white);
+    background: linear-gradient(to bottom, lightblue, rgb(207, 216, 237));
     border: 5px solid rgb(167, 208, 221);
     font-size: .85rem;
     color: white;
@@ -196,7 +196,7 @@
     color: gray;
 }
 .fairy {
-    background: linear-gradient(to bottom, rgb(255, 136, 154), pink);
+    background: linear-gradient(to bottom, rgb(241, 92, 115), pink);
     border: 5px solid pink;
     color: pink;
     font-size: .85rem;
@@ -282,7 +282,7 @@
     top: 10px;
     left: 10px;
     font-size: 20px;
-    color: black;
+    color: white;
     font-weight: bold;
 }
 

@@ -21,7 +21,7 @@ console.log(pokemon)
   return (
     <article className={`pokecard  ${pokemon?.types[0].type.name}`} onClick={handleClick}>
       <div className={`pokecard__back ${pokemon?.types[0].type.name}`}></div>
-      <span className='pokecard__id noshadow'>#{pokemon?.id}</span>
+      <span className='pokecard__id '>#{pokemon?.id}</span>
         <figure className='pokecard__img'>
             <img loading='lazy' src={pokemon?.sprites.other['official-artwork'].front_default} alt="pokemon image" />
         </figure>
