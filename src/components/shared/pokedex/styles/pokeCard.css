@@ -207,7 +207,8 @@
 .fairy2{
     color: pink;
 }
-
+/* ---- movements ---- */
+/* ---- contest ---- */
 .cool{
     background: linear-gradient(to bottom, hsl(12, 68%, 62%), rgb(176, 97, 97));
     border: 5px solid pink;
@@ -245,6 +246,28 @@
 .beauty{
     background: linear-gradient(to bottom, lightblue, hsl(220, 94%, 67%));
     border: 5px solid lightblue;
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+/* ---- status  ---- */
+.special{
+    background: linear-gradient(to bottom, darkblue, hsl(220, 98%, 44%));
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.physical{
+    background: linear-gradient(to bottom, rgb(253, 158, 90), hsl(31, 100%, 38%));
+    font-size: .85rem;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.status{
+    background: linear-gradient(to bottom, lightgray, hsl(30, 1%, 46%));
     font-size: .85rem;
     color: white;
     font-weight: bold;

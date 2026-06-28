@@ -17,7 +17,7 @@ const PokeCard = ({url}) => {
       navigate(`/pokedex/${pokemon.name}`);
     }
 
-console.log(pokemon)
+ //console.log(pokemon)
   return (
     <article className={`pokecard  ${pokemon?.types[0].type.name}`} onClick={handleClick}>
       <div className={`pokecard__back ${pokemon?.types[0].type.name}`}></div>
