@@ -1,5 +1,6 @@
 .evo__cont {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;       
   align-items: center;
   justify-content: center;
@@ -23,6 +24,7 @@
 }
 .evo__stage2 {
   display: flex;
+  width: 100%;
   flex-direction: column;       
   align-items: center;
   gap: 4px;
@@ -38,9 +40,11 @@
 
 .evo__row {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;  
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 5px;
 }
 
 
@@ -75,8 +79,8 @@
 
 /* ── Imagen ── */
 .evo__img {
-  width: 90px;
-  height: 90px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -125,7 +129,7 @@
 }
 
 .evo__detail {
-  font-size: 0.65rem;
+  font-size: 0.80rem;
   color: white;
   text-transform: capitalize;
   text-align: left;
@@ -205,7 +209,7 @@
 }
 
 @media (max-width: 700px) {
-   .evo__cont {
+  .evo__cont {
     flex-direction: column;
   }
 
@@ -222,8 +226,5 @@
   .evo__row{
     flex-direction: column;
   }
-  .evo__img {
-    width: 70px;
-    height: 70px;
-  }
+  
 }

@@ -58,11 +58,19 @@ const Evolves = () => {
   const renderDetail = (details) => {
     if (!details) return null;
     const labels = {
-      min_level: 'Level', min_happiness: 'Happiness', min_affection: 'Affection',
-      min_beauty: 'Beauty', held_item: 'Hold item', known_move: 'Move',
-      known_move_type: 'Move type', time_of_day: 'Time', trigger: 'Method',
-      trade_species: 'Trade with', needs_overworld_rain: 'Rain',
-      turn_upside_down: 'Upside down', item: 'Use item',
+      min_level: 'Level', 
+      min_happiness: 'Happiness', 
+      min_affection: 'Affection',
+      min_beauty: 'Beauty', 
+      held_item: 'Hold item', 
+      known_move: 'Move',
+      known_move_type: 'Move type', 
+      time_of_day: 'Time', 
+      trigger: 'Method',
+      trade_species: 'Trade with',
+       needs_overworld_rain: 'Rain',
+      turn_upside_down: 'Upside down',
+       item: 'Use item',
     };
     return Object.entries(details)
       .filter(([, v]) => v !== null && v !== false && v !== '')
