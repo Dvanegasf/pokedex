@@ -1,7 +1,8 @@
 .pokeselect{
     padding: 10px;
-    width: 40%;
+    width: 100%;
     height: 50%;
+    margin-right: 5%;
     border: none;
     box-shadow: 0 0 10px white;
     color: rgb(137, 137, 137);

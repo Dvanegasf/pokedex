@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, memo } from 'react'
 import useFetch from '../../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import './styles/pokeCard.css';
@@ -9,21 +9,22 @@ const PokeCard = ({url}) => {
 
     const navigate = useNavigate();
 
+    
     useEffect(() => {
       getPokemon(url)
-    }, []);
+    }, [url]);
 
     const handleClick = () => {
       navigate(`/pokedex/${pokemon.name}`);
     }
 
- //console.log(pokemon)
+  // console.log(pokemon)
   return (
     <article className={`pokecard  ${pokemon?.types[0].type.name}`} onClick={handleClick}>
       <div className={`pokecard__back ${pokemon?.types[0].type.name}`}></div>
       <span className='pokecard__id '>#{pokemon?.id}</span>
         <figure className='pokecard__img'>
-            <img loading='lazy' src={pokemon?.sprites.other['official-artwork'].front_default} alt="pokemon image" />
+            <img loading='lazy' src={pokemon?.sprites.other['official-artwork'].front_default || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`} alt="pokemon image" />
         </figure>
         <h3 className='pokecard__name noshadow'>{pokemon?.name}</h3>
         <span className='pokecard__span noshadow'>Type :</span>

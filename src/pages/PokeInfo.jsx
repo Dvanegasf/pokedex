@@ -16,7 +16,7 @@ const PokeInfo = () => {
   const [count, getCount] = useFetch();
   const [more1poke, getMore1poke] = useFetch();
   const [minus1poke, getMinus1poke] = useFetch();
- // const [item, getItem] = useFetch();
+  const [item, getItem] = useFetch();
 
 
   const navigate = useNavigate();
@@ -35,18 +35,20 @@ const PokeInfo = () => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const url2 = `https://pokeapi.co/api/v2/pokemon-species/${id}/`;
     const url3 = `https://pokeapi.co/api/v2/pokemon-species/?limit=10000/`;
-    //const url4 = `https://pokeapi.co/api/v2/item/`;
+    const url4 = `https://pokeapi.co/api/v2/item`;
 
     
 // console.log(url)
 // console.log(url2)
 // console.log(url3)
+// console.log(url4)
+
 
 
     getPokemon(url);
     getSpecies(url2);
     getCount(url3);
-   // getItem(url4)
+    getItem(url4)
     
     window.scrollTo(0, 0);
     setMovesData([]);
@@ -62,10 +64,13 @@ const PokeInfo = () => {
 useEffect(() => {
   if (!pokemon?.id) return;
   const total = count?.count;
+  // console.log(total)
 
   const nextId = pokemon.id >= total ? 1 : pokemon.id + 1;
   const prevId = pokemon.id <= 1 ? total : pokemon.id - 1;
 
+// console.log(nextId, prevId)
+  
   getMore1poke(`https://pokeapi.co/api/v2/pokemon/${nextId}/`);
   getMinus1poke(`https://pokeapi.co/api/v2/pokemon/${prevId}/`);
 }, [pokemon, count]);

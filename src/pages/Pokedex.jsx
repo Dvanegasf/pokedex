@@ -21,8 +21,10 @@ const Pokedex = () => {
 
   const [inputValue, setInputValue] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+  const [page, setPage] = useState(12);
+  
   const [pokemons, getPokemons, getType] = useFetch();
-
+  
   useEffect(() => {
     if (typeFilter) {
       getType(typeFilter)
@@ -44,9 +46,17 @@ const Pokedex = () => {
     navigate('/')
   }
 
-  const cbFilter = (poke) => poke.name.includes(inputValue);
+  const handlePageChange = (e) => {
+    const value = Number(e.target.value);
+    if (isNaN(value)) return;
+    if (value < 1) return setPage(1);
+    if (value > 1025) return setPage(1025);
+    setPage(value);
+  };
 
-  const quantity = 12;
+  const cbFilter = (poke) => poke.name.includes(inputValue);
+  
+  const quantity = page;
   const filtered = pokemons?.results.filter(cbFilter) || [];
   const total = Math.ceil(filtered.length / quantity);
 
@@ -56,6 +66,8 @@ const Pokedex = () => {
     return filtered.slice(start, end);
   }
 
+  // console.log(pokemons)
+// console.log(page)
   return (
     <div className='pokedex'>
       <PokeHeader/>
@@ -63,10 +75,17 @@ const Pokedex = () => {
         <form className='pokedex__filters' onSubmit={handleSubmit}>
           <input placeholder='Search for a pokemon' className='pokedex__in' ref={textInput} type="text" />
           <button className='pokedex__btn'>Search</button>
+          <input 
+            value={page}
+            onChange={handlePageChange}
+            type="number"
+            min={1}
+            max={1025}
+          />
           <div className='pokedex__filters2'>
             <h3 className='pokedex__wave'>
               <span>Welcome {trainer}, </span>here you can find information about any Pokémon.
-              <button onClick={handleChangeName} className='pokedex__change-name'>Change name</button>
+              <button onClick={handleChangeName} className='pokedex__change'>Change name</button>
             </h3>
             <PokeSelect setTypeFilter={setTypeFilter}/>
           </div>

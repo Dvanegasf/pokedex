@@ -42,21 +42,23 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;  
-  align-items: center;
+  align-items: start;
   justify-content: center;
   gap: 5px;
+
 }
 
 
 /* ── Card ── */
 .evo__card {
   display: flex;
+  top: 0;
   flex-direction: column;
   align-items: center;
   padding: 12px 10px 10px;
   border-radius: 14px;
   cursor: pointer;
-  width: 180px;
+  width: 220px;
   flex-shrink: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
@@ -118,10 +120,9 @@
 /* ── Detalles de evolución ── */
 .evo__details {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  flex-direction: column-reverse;
   margin-top: 8px;
-  gap: 3px;
   width: 100%;
   background: rgba(0,0,0,0.15);
   border-radius: 8px;
@@ -129,15 +130,33 @@
 }
 
 .evo__detail {
+  display: flex;
+  width: 100%;
   font-size: 0.80rem;
   color: white;
   text-transform: capitalize;
+  align-items: center;
   text-align: left;
   line-height: 1.4;
+  
 }
 
 .evo__detail strong {
   opacity: 0.8;
+  align-items: center;
+
+  margin: 3px ;
+}
+.evo__detail p {
+  margin: 0 7px 0 0;
+  align-items: center;
+}
+
+.evo__item{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
 }
 
 /* ── Forms section ── */
@@ -219,9 +238,6 @@
 
   .evo__arrow {
     transform: rotate(0deg);
-  }
-  .evo__card {
-    width: 180px;
   }
   .evo__row{
     flex-direction: column;

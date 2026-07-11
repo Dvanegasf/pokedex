@@ -39,7 +39,7 @@ const HomePage = () => {
         <h2 className='pokehome__hi'>Hi trainer!</h2>
         <p className='pokehome__text'>To start, give me your name</p>
         <form className='pokehome__form' onSubmit={handleSubmit}>
-          <input placeholder='Your name' className='pokehome__in' ref={textInput} type="text" />
+          <input placeholder='Your name' className='pokehome__in' ref={textInput} />
           <button className='pokehome__btn'>Start</button>
         </form>
       </div>
