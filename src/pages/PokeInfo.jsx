@@ -5,7 +5,7 @@ import axios from 'axios';
 import PokeHeader from '../components/shared/pokedesing/PokeHeader';
 import PokeFooter from '../components/shared/pokedesing/PokeFooter';
 import Numbers from '../components/shared/pokeInfo/Numbers'
-import Evolves from '../components/shared/pokeinfo/Evolves';
+import Evolves from '../components/shared/pokeInfo/Evolves';
 import Forms from '../components/shared/pokeInfo/Forms';
 import Moves from '../components/shared/pokeInfo/Moves';
 import './styles/pokeInfo.css';
