@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './styles/evolves.css';
-import './styles/pokeCard.css';
+import '../pokedex/styles/pokeCard.css';
 import { version } from 'react';
 
 const format = (text) =>
@@ -180,6 +180,8 @@ const Evolves = () => {
   yy};
 
   const stages = [...new Set(chain.map(e => e.stage))];
+
+  
   return (
     <div className='evo__cont'>
       

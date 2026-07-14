@@ -1,0 +1,14 @@
+.numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.numbers__pokedex {
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  color: #454444;
+  display: flex;
+  justify-content: space-between;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './styles/evolves.css';
-import './styles/pokeCard.css';
+import '../pokedex/styles/pokeCard.css';
 
 const Forms = () => {
   const { id } = useParams();

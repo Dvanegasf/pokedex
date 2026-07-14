@@ -4,7 +4,7 @@ import './App.css'
 import HomePage from './pages/HomePage'
 import PokeInfo from './pages/PokeInfo'
 import Pokedex from './pages/Pokedex'
-import PokeLoader from './components/shared/PokeLoader'
+import PokeLoader from './components/shared/pokedesing/PokeLoader'
 
 function App() {
   const [loading, setLoading] = useState(true)

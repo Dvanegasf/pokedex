@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { setPaginate } from '../store/slices/pokedex.slice';
-import useFetch from '../hooks/useFetch';
-import PokeCard from '../components/shared/pokedex/PokeCard';
-import PokeSelect from '../components/shared/pokedex/PokeSelect';
-import './styles/pokedex.css';
-import Pagin from '../components/shared/pokedex/Pagin'
-import PokeHeader from '../components/shared/PokeHeader';
-import PokeFooter from '../components/shared/PokeFooter';
-import { useDispatch as useReduxDispatch } from 'react-redux';
-import { clearTrainer } from '../store/slices/trainer.slice';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch as useReduxDispatch } from 'react-redux';
+import { setPaginate } from '../store/slices/pokedex.slice';
+import { clearTrainer } from '../store/slices/trainer.slice';
+import PokeHeader from '../components/shared/pokedesing/PokeHeader';
+import useFetch from '../hooks/useFetch';
+import PokeSelect from '../components/shared/pokedex/PokeSelect';
+import PokeCard from '../components/shared/pokedex/PokeCard';
+import Pagin from '../components/shared/pokedex/Pagin'
+import PokeFooter from '../components/shared/pokedesing/PokeFooter';
+import './styles/pokedex.css';
 
 const Pokedex = () => {
 
@@ -29,7 +29,7 @@ const Pokedex = () => {
     if (typeFilter) {
       getType(typeFilter)
     } else {
-      getPokemons('https://pokeapi.co/api/v2/pokemon/?limit=1025');
+      getPokemons('https://pokeapi.co/api/v2/pokemon/?limit=10000');
     }
   }, [typeFilter]);
 

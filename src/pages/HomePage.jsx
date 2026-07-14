@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { setTrainer } from '../store/slices/trainer.slice';
 import { useNavigate } from 'react-router-dom';
+import { setTrainer } from '../store/slices/trainer.slice';
 import { useDispatch, useSelector } from 'react-redux';
-import '../components/shared/pokedex/styles/pokeCard.css'
+import PokeHeader from '../components/shared/pokedesing/PokeHeader';
+import PokeFooter from '../components/shared/pokedesing/PokeFooter';
 import './styles/homePage.css'
-import PokeHeader from '../components/shared/PokeHeader';
-import PokeFooter from '../components/shared/PokeFooter';
 
 const HomePage = () => {
 
