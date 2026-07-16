@@ -14,7 +14,7 @@ import '../components/shared/pokedex/styles/pokeCard.css'
 const PokeInfo = () => {
 
   const [pokemon, getPokemon] = useFetch();
-  //const [species, getSpecies] = useFetch();
+  const [species, getSpecies] = useFetch();
   const [count, getCount] = useFetch();
   const [more1poke, getMore1poke] = useFetch();
   const [minus1poke, getMinus1poke] = useFetch();
@@ -33,20 +33,17 @@ const PokeInfo = () => {
 
   useEffect(() => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    //const url2 = `https://pokeapi.co/api/v2/pokemon-species/${id}/`;
     const url3 = `https://pokeapi.co/api/v2/pokemon-species/?limit=10000/`;
     //const url4 = `https://pokeapi.co/api/v2/item`;
-
     
-// console.log(url)
-// console.log(url2)
-// console.log(url3)
-// console.log(url4)
-
-
-
+    
+    // console.log(url)
+    // console.log(url3)
+    // console.log(url4)
+    
+    
+    
     getPokemon(url);
-    //getSpecies(url2);
     getCount(url3);
     // getItem(url4)
     
@@ -58,19 +55,22 @@ const PokeInfo = () => {
     setFormsLoaded(false);
     setMovesLoaded(false);
   }, [id]);
-
-useEffect(() => {
-  if (!pokemon?.id) return;
-  const total = count?.count;
-  // console.log(total)
-
-  const nextId = pokemon.id >= total ? 1 : pokemon.id + 1;
-  const prevId = pokemon.id <= 1 ? total : pokemon.id - 1;
-
-// console.log(nextId, prevId)
   
-  getMore1poke(`https://pokeapi.co/api/v2/pokemon/${nextId}/`);
-  getMinus1poke(`https://pokeapi.co/api/v2/pokemon/${prevId}/`);
+  useEffect(() => {
+    if (!pokemon?.id) return;
+    const total = count?.count;
+    const url2 = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`;
+    // console.log(total)
+    
+    const nextId = pokemon.id >= total ? 1 : pokemon.id + 1;
+    const prevId = pokemon.id <= 1 ? total : pokemon.id - 1;
+    
+    // console.log(url2)
+    // console.log(nextId, prevId)
+    
+    getSpecies(url2);
+    getMore1poke(`https://pokeapi.co/api/v2/pokemon/${nextId}/`);
+    getMinus1poke(`https://pokeapi.co/api/v2/pokemon/${prevId}/`);
 }, [pokemon, count]);
 
 
@@ -239,7 +239,7 @@ const playSound = () => {
                 <hr className='pokeinfo__hr hr2'/>
                 <figure><img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" /></figure>
               </div>
-              <div className='pokeinfo__evos'><Evolves /></div>
+              <div className='pokeinfo__evos'><Evolves species={species} pokemon={pokemon} /></div>
             </div>
           )}
           {formsLoaded && (

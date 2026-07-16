@@ -21,7 +21,7 @@ const Pokedex = () => {
 
   const [inputValue, setInputValue] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
-  const [page, setPage] = useState(12);
+  const [page, setPage] = useState(5);
   
   const [pokemons, getPokemons, getType] = useFetch();
   
@@ -29,7 +29,7 @@ const Pokedex = () => {
     if (typeFilter) {
       getType(typeFilter)
     } else {
-      getPokemons('https://pokeapi.co/api/v2/pokemon/?limit=10000');
+      getPokemons('https://pokeapi.co/api/v2/pokemon/?limit=1025');
     }
   }, [typeFilter]);
 

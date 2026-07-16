@@ -6,6 +6,7 @@ import './styles/pokeCard.css';
 const PokeCard = ({url}) => {
 
     const [pokemon, getPokemon] = useFetch();
+    const [specie, getSpecie] = useFetch();
 
 
     const navigate = useNavigate();
@@ -15,12 +16,16 @@ const PokeCard = ({url}) => {
       getPokemon(url)
     }, [url]);
 
+    useEffect(() => {
+      getSpecie(`https://pokeapi.co/api/v2/pokemon-species/${pokemon?.id}/`)
+    }, [pokemon]);
+
     
     const handleClick = () => {
       navigate(`/pokedex/${pokemon.name}`);
     }
 
-   //console.log(especies)
+   console.log(specie)
   return (
     <article className={`pokecard  ${pokemon?.types[0].type.name}`} onClick={handleClick}>
       <div className={`pokecard__back ${pokemon?.types[0].type.name}`}></div>
@@ -28,7 +33,7 @@ const PokeCard = ({url}) => {
         <figure className='pokecard__img'>
             <img loading='lazy' src={pokemon?.sprites.other['official-artwork'].front_default || `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`} alt="pokemon image" />
         </figure>
-        <h3 className='pokecard__name noshadow'>{pokemon?.name}</h3>
+        <h3 className='pokecard__name noshadow'>{specie?.name|| pokemon?.name}</h3>
         <span className='pokecard__span noshadow'>Type :</span>
         <ul className='pokecard__types'>
             {

@@ -1,61 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, version} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useFetch from '../../../hooks/useFetch';
 import './styles/evolves.css';
 import '../pokedex/styles/pokeCard.css';
-import { version } from 'react';
 
 const format = (text) =>
   text
     .replaceAll('-', ' ')
     .replaceAll('_', ' ')
     .replace(/\b\w/g, l => l.toUpperCase());
-const fetchPokemon = (name) =>
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${name}/`).then(r => r.data);
-
-const Evolves = () => {
+    
+    
+const fetchPokemon = (id) => axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(r => r.data);
+    
+const Evolves = ({pokemon, species}) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [chain, setChain] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  
- useEffect(() => {
-  setChain([]);
-  setLoading(false);
-  loadChain(false);
-}, [id]);
+
+  //console.log(species)
+  useEffect(() => {
+    setChain([]);
+    setLoading(false);
+    loadChain(false);
+  }, [id]);
 
   const loadChain = async () => {
     if (loaded) return;
     setLoading(true);
     try {
-      const species = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
-      const chainRes = await axios.get(species.data.evolution_chain.url);
+      
+      const chainRes = await axios.get(species.evolution_chain.url) || null;
+     // const chainRes3 = await axios.get(chainRes?.data.chain.species.url);
+     
+     
+     
 
-      console.log(chainRes)
-      const flat = [];
-      const traverse = (node, stage) => {
-        flat.push({
-          name: node.species.name,
-          details: node.evolution_details,
-          stage
+     const flat = [];
+     const traverse = (node, stage) => {
+       flat.push({
+         id: node.species.url.split('/').filter(Boolean).pop(),
+         name: node.species.name,
+         details: node.evolution_details,
+         stage
         });
         node.evolves_to.forEach(next => traverse(next, stage + 1));
       };
       traverse(chainRes.data.chain, 0);
 
-      const pokeData = await Promise.all(flat.map(e => fetchPokemon(e.name)));
 
-      const result = flat.map((e, i) => ({
-        ...e,
-        id: pokeData[i].id,
-        image: pokeData[i].sprites.other['official-artwork'].front_default,
-        type: pokeData[i].types[0].type.name,
-        type2: pokeData[i].types[1]?.type.name || null,
-        pokeName: pokeData[i].name,
-      }));
+      const pokeData = await Promise.all(flat.map(e => fetchPokemon(e.id)));
+
+    const result = flat.map((e, i) => ({
+      ...e,
+      id: pokeData[i].id,
+      image: pokeData[i].sprites.other['official-artwork'].front_default,
+      type: pokeData[i].types[0].type.name,
+      type2: pokeData[i].types[1]?.type.name || null,
+      pokeName: pokeData[i].name,
+    }));
 
       setChain(result);
       setLoaded(true);
@@ -67,9 +74,9 @@ const Evolves = () => {
   };
 
   useEffect(() => {
-  if (!loading) return;
-  loadChain();
-}, [loading]);
+    if (!loading) return;
+    loadChain();
+  }, [loading]);
 
   const renderDetail = (details) => {
   if (!details) return null;
@@ -108,7 +115,6 @@ const Evolves = () => {
   return Object.entries(details)
     .filter(([k, v]) => 
       !ignoredFields.includes(k) && 
-     // v !== true && 
       v !== null && 
       v !== false &&
       v !== '')
@@ -146,7 +152,7 @@ const Evolves = () => {
 
       } else {
 
-        // 👇 Caso especial para Tyrogue
+        // Caso especial para Tyrogue //
         if (k === 'relative_physical_stats') {
 
           switch (v) {
@@ -177,7 +183,7 @@ const Evolves = () => {
         </span>
       );
     });
-  yy};
+  };
 
   const stages = [...new Set(chain.map(e => e.stage))];
 
@@ -234,7 +240,7 @@ const Evolves = () => {
                     )}
 
                   </div>
-)}
+                )}
               </div>
             ))}
           </div>
