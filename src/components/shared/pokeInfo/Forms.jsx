@@ -4,7 +4,7 @@ import axios from 'axios';
 import './styles/evolves.css';
 import '../pokedex/styles/pokeCard.css';
 
-const Forms = () => {
+const Forms = ({species}) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formsByPoke, setFormsByPoke] = useState([]); // [{ baseName, forms[] }]
@@ -17,8 +17,7 @@ const Forms = () => {
     const load = async () => {
       try {
         // 1. obtener cadena evolutiva
-        const speciesRes = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
-        const chainRes = await axios.get(speciesRes.data.evolution_chain.url);
+        const chainRes = await axios.get(species.evolution_chain.url);
 
         // 2. aplanar cadena para obtener nombres
         const chainNames = [];
@@ -26,6 +25,7 @@ const Forms = () => {
           chainNames.push(node.species.name);
           node.evolves_to.forEach(next => traverse(next));
         };
+        console.log(species)
         traverse(chainRes.data.chain);
 
         // 3. por cada pokemon de la cadena buscar sus variedades
@@ -33,7 +33,6 @@ const Forms = () => {
           chainNames.map(async (name) => {
             const sp = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${name}/`);
             if (sp.data.varieties.length <= 1) return null;
-
             const vars = await Promise.all(
               sp.data.varieties
                 .filter(v => !v.is_default)

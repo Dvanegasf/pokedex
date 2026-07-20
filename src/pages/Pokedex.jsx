@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch as useReduxDispatch } from 'react-redux';
-import { setPaginate } from '../store/slices/pokedex.slice';
+import { setPaginate, setSearch } from '../store/slices/pokedex.slice';
 import { clearTrainer } from '../store/slices/trainer.slice';
 import PokeHeader from '../components/shared/pokedesing/PokeHeader';
 import useFetch from '../hooks/useFetch';
@@ -18,13 +18,14 @@ const Pokedex = () => {
   const navigate = useNavigate()
   const trainer = useSelector((store) => store.trainer);
   const paginate = useSelector((store) => store.pokedex.paginate);
-
-  const [inputValue, setInputValue] = useState('');
+  const inputValue = useSelector(store => store.pokedex.search);
   const [typeFilter, setTypeFilter] = useState('');
-  const [page, setPage] = useState(5);
+  const [page, setPage] = useState(9);
   
   const [pokemons, getPokemons, getType] = useFetch();
-  
+
+
+
   useEffect(() => {
     if (typeFilter) {
       getType(typeFilter)
@@ -37,7 +38,10 @@ const Pokedex = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setInputValue(textInput.current.value.trim().toLowerCase());
+    const value = textInput.current.value.trim().toLowerCase();
+    dispatch(setPaginate(1));
+    dispatch(setSearch(value))
+
     textInput.current.value = '';
   }
 
@@ -73,7 +77,13 @@ const Pokedex = () => {
       <PokeHeader/>
       <div className='pokedex__filters1'>
         <form className='pokedex__filters' onSubmit={handleSubmit}>
-          <input placeholder='Search for a pokemon' className='pokedex__in' ref={textInput} type="text" />
+          <input 
+          className='pokedex__in' 
+          placeholder='Search for a pokemon' 
+          ref={textInput} 
+          type="text"
+          defaultValue={inputValue}
+           />
           <button className='pokedex__btn'>Search</button>
           <input 
             value={page}

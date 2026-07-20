@@ -336,6 +336,8 @@
     border-radius: 30px;
     padding: 3px 5px;
     font-weight: 900;
+    box-shadow: 1px 1px 1px 1px black;
+
 }
 .pokecard__hr {
     width: 90%;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
 import axios from 'axios';
+import useFetch from '../hooks/useFetch';
 import PokeHeader from '../components/shared/pokedesing/PokeHeader';
 import PokeFooter from '../components/shared/pokedesing/PokeFooter';
 import Numbers from '../components/shared/pokeInfo/Numbers'
 import Evolves from '../components/shared/pokeInfo/Evolves';
 import Forms from '../components/shared/pokeInfo/Forms';
 import Moves from '../components/shared/pokeInfo/Moves';
+import Debilities from '../components/shared/pokeInfo/Debilities';
 import './styles/pokeInfo.css';
 import '../components/shared/pokedex/styles/pokeCard.css'
 
@@ -15,6 +16,8 @@ const PokeInfo = () => {
 
   const [pokemon, getPokemon] = useFetch();
   const [species, getSpecies] = useFetch();
+  const [alltypes, getAlltypes] = useFetch();
+
   const [count, getCount] = useFetch();
   const [more1poke, getMore1poke] = useFetch();
   const [minus1poke, getMinus1poke] = useFetch();
@@ -24,42 +27,50 @@ const PokeInfo = () => {
   const navigate = useNavigate();
   
   const { id } = useParams();
+  const [types, setTypes] = useState();
+  const [pokedexLoaded, setPokedexLoaded] = useState(false);
+  const [debilitiesLoaded, setdebilitiesLoaded] = useState(false);
   const [evosLoaded, setEvosLoaded] = useState(false);
   const [formsLoaded, setFormsLoaded] = useState(false);
-  const [pokedexLoaded, setPokedexLoaded] = useState(false);
   const [isShiny, setIsShiny] = useState(false);
   const [isMale, setIsMale] = useState(true);
   const [movesLoaded, setMovesLoaded] = useState(false);
 
   useEffect(() => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    const url3 = `https://pokeapi.co/api/v2/pokemon-species/?limit=10000/`;
-    //const url4 = `https://pokeapi.co/api/v2/item`;
-    
-    
+    const url3 = 'https://pokeapi.co/api/v2/pokemon-species/?limit=10000/'
+    //const url4 = `https://pokeapi.co/api/v2/item/`;
+    const url5 = 'https://pokeapi.co/api/v2/type/'
+
     // console.log(url)
     // console.log(url3)
     // console.log(url4)
+    // console.log(url5)
+
     
     
     
     getPokemon(url);
     getCount(url3);
-    // getItem(url4)
+    //getItem(url4)
+    getAlltypes(url5)
     
     window.scrollTo(0, 0);
     setIsShiny(false);
     setIsMale(true);
     setPokedexLoaded(false);
+    setdebilitiesLoaded(false);
     setEvosLoaded(false);
     setFormsLoaded(false);
     setMovesLoaded(false);
   }, [id]);
   
   useEffect(() => {
-    if (!pokemon?.id) return;
+    if (!pokemon?.id || !count?.count) return;
     const total = count?.count;
     const url2 = `https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`;
+    const types = pokemon?.types.map(type => type.type.url)
+
     // console.log(total)
     
     const nextId = pokemon.id >= total ? 1 : pokemon.id + 1;
@@ -71,59 +82,68 @@ const PokeInfo = () => {
     getSpecies(url2);
     getMore1poke(`https://pokeapi.co/api/v2/pokemon/${nextId}/`);
     getMinus1poke(`https://pokeapi.co/api/v2/pokemon/${prevId}/`);
+
+    const typeUrls = pokemon.types.map(t => t.type.url);
+    Promise.all(typeUrls.map(url => axios.get(url).then(r => r.data)))
+      .then(results => setTypes(results))
+      .catch(err => console.log(err));
+
 }, [pokemon, count]);
 
 
 
 
-  
-
-  const pokeballs = [
+const pokeballs = [
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png',
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png'
 ]
-  
-  
-  
-  
-  // cuantos botones quedan pendientes
-  const pendingButtons = [
-    !evosLoaded,
-    !formsLoaded,
-    !movesLoaded,
-    !pokedexLoaded,
-  ].filter(Boolean).length;
-  
-  
-  
-  const getSprite = () => {
-    const sprites = pokemon?.sprites.other['home'];
-    if (isShiny && isMale) return sprites?.front_shiny;
-    if (isShiny && !isMale) return sprites?.front_shiny_female || sprites?.front_shiny;
-    if (!isShiny && !isMale) return sprites?.front_female || sprites?.front_default;
+
+
+
+
+// cuantos botones quedan pendientes
+const pendingButtons = [
+  !evosLoaded,
+  !formsLoaded,
+  !movesLoaded,
+  !pokedexLoaded,
+  !debilitiesLoaded,
+].filter(Boolean).length;
+
+
+
+const getSprite = () => {
+  const sprites = pokemon?.sprites.other['home'];
+  if (isShiny && isMale) return sprites?.front_shiny;
+  if (isShiny && !isMale) return sprites?.front_shiny_female || sprites?.front_shiny;
+  if (!isShiny && !isMale) return sprites?.front_female || sprites?.front_default;
     return sprites?.front_default;
   };
-const playSound = () => {
-  const audio = new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${pokemon?.id}.ogg`);
-  audio.play();
-}
-
+  const playSound = () => {
+    const audio = new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${pokemon?.id}.ogg`);
+    audio.play();
+  }
+  
   const handleClick = () => {
     navigate(`/pokedex/${more1poke?.name}`);
   }
   const handleClick2 = () => {
     navigate(`/pokedex/${minus1poke?.name}`);
   }
-
-    // console.log(pokemon)
-    // console.log(species)
+  
+  // console.log(pokemon)
+  // console.log(species)
+  // console.log(item)
+  // console.log(alltypes)
     // console.log(count?.count)
     // console.log(more1poke)
     // console.log(minus1poke)
     // console.log(item)
 
+  
   return (
     <section className='pokeinfo'>
       <button  className='next' onClick={handleClick}> next</button>
@@ -215,6 +235,17 @@ const playSound = () => {
             </div>
           </div>
 
+          {/* debilities ── */}
+          {debilitiesLoaded && (
+            <div id='deb' className='datos1 datos1--full '>
+              <div className='pokeinfo__title'>
+                <span className='noshadow'>Debilities</span>
+                <hr className='pokeinfo__hr hr2'/>
+                <figure><img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" /></figure>
+              </div>
+              <Debilities alltypes={alltypes} types={types} />
+            </div>
+          )}
           {/* Pokédex Numbers ── */}
           {pokedexLoaded && (
             <div id='num' className='datos1 datos1--full last'>
@@ -226,9 +257,9 @@ const playSound = () => {
               <Numbers id={id} />
             </div>
           )}
-        </div>
-          
 
+        </div>
+        
         {/* ── Evoluciones, Forms  and moves── */}
         {(evosLoaded || formsLoaded || movesLoaded) && (
         <div id='evo' className='evos__forms'>
@@ -249,12 +280,12 @@ const playSound = () => {
                 <hr className='pokeinfo__hr hr2'/>
                 <figure><img className='pokeinfo__img2' src="../../../assets/pokebola.png" alt="pokebola image" /></figure>
               </div>
-              <div className='pokeinfo__evos'><Forms /></div>
+              <div className='pokeinfo__evos'><Forms species={species} /></div>
             </div>
           )}
           {/* Moves */}
           {movesLoaded && (
-            <div id='mov' className='datos1 combinateBottom datos1--full'>
+            <div id='mov' className='datos1 combinateBottom datos1--full last'>
               <div className='pokeinfo__title'>
                 <span className='noshadow'>movements</span>
                 <hr className='pokeinfo__hr hr2'/>
@@ -267,15 +298,25 @@ const playSound = () => {
           )}
         </div>
       )}
-        {/* ── Butons ── */}
+        {/* Butons  */}
         {pendingButtons > 0 && (
           <div className='load-btns'>
+
             {!pokedexLoaded && (
               <a className='moves-button' onClick={() => setPokedexLoaded(true)} href='#num'>
                 <div className='pokeball-btn'>
                   <div className='pokeball-btn__top' style={{backgroundImage: `url(${pokeballs[0]})`}}></div>
                   <div className='pokeball-btn__bottom' style={{backgroundImage: `url(${pokeballs[0]})`}}></div>
-                  <span className='pokeball-btn-text'>Pokédex</span>
+                  <span className='pokeball-btn-text'>Pokedex</span>
+                </div>
+              </a>
+            )}
+            {!debilitiesLoaded && (
+              <a className='moves-button' onClick={() => setdebilitiesLoaded(true)} href='#deb'>
+                <div className='pokeball-btn'>
+                  <div className='pokeball-btn__top' style={{backgroundImage: `url(${pokeballs[4]})`}}></div>
+                  <div className='pokeball-btn__bottom' style={{backgroundImage: `url(${pokeballs[4]})`}}></div>
+                  <span className='pokeball-btn-text'>Debilities</span>
                 </div>
               </a>
             )}
@@ -310,7 +351,6 @@ const playSound = () => {
                 </div>
               </a>
             )}
-            
           </div>
         )}
       </div>

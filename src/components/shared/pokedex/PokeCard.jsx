@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from 'react'
+import React, { useEffect } from 'react'
 import useFetch from '../../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import './styles/pokeCard.css';
@@ -17,6 +17,7 @@ const PokeCard = ({url}) => {
     }, [url]);
 
     useEffect(() => {
+      if (!pokemon?.id) return;
       getSpecie(`https://pokeapi.co/api/v2/pokemon-species/${pokemon?.id}/`)
     }, [pokemon]);
 
@@ -25,7 +26,7 @@ const PokeCard = ({url}) => {
       navigate(`/pokedex/${pokemon.name}`);
     }
 
-   console.log(specie)
+   //console.log(pokemon)
   return (
     <article className={`pokecard  ${pokemon?.types[0].type.name}`} onClick={handleClick}>
       <div className={`pokecard__back ${pokemon?.types[0].type.name}`}></div>
